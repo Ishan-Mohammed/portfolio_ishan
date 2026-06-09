@@ -40,14 +40,6 @@ export default function Internship() {
               Served as an Engineering Intern researching large language modeling architectures, developing digital copy structures, managing vector branding assets, and coding semantic portfolio interfaces.
             </p>
           </div>
-
-          <div className="flex items-center gap-3 p-4 rounded-2xl bg-amber-500/5 border border-amber-500/10 shrink-0 font-mono text-left">
-            <Flame className="w-8 h-8 text-amber-500 animate-pulse" />
-            <div>
-              <div className="text-[9px] text-slate-500 uppercase tracking-widest">PERFORMANCE ID</div>
-              <div className="text-xs font-black text-white">TOMAT_AI_INTERN_026</div>
-            </div>
-          </div>
         </div>
 
         {/* Dynamic Timeline Splitter layout */}
