@@ -19,7 +19,6 @@ export default function Hero() {
   const [showConsoleAlert, setShowConsoleAlert] = useState(false);
   const [consoleLogs, setConsoleLogs] = useState<string[]>([]);
   const [showResumeModal, setShowResumeModal] = useState(false);
-  const [imageError, setImageError] = useState(false);
 
   // Custom typewriter effect
   useEffect(() => {
@@ -161,9 +160,9 @@ export default function Hero() {
         </div>
 
         {/* Right column: Elegant Eye-catching Profile Photo Container */}
-        <div className="lg:col-span-5 relative w-full flex justify-center">
+        <div className="lg:col-span-12 xl:col-span-5 relative w-full flex justify-center">
           <motion.div
-            className="w-full max-w-[320px] relative flex flex-col items-center justify-center"
+            className="w-full max-w-[320px] relative flex flex-col items-center justify-center animate-fade-in"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
@@ -175,97 +174,24 @@ export default function Hero() {
             <div className="w-full aspect-[3/4] rounded-3xl bg-slate-950 border border-slate-900 p-3 shadow-2xl relative overflow-hidden group">
               <div className="w-full h-full rounded-2xl overflow-hidden relative bg-slate-900 flex items-center justify-center">
                 
-                {/* 1. Try loading real user profile image with exact ratio */}
-                {!imageError ? (
-                  <img
-                    src="/profile.jpg"
-                    alt="Ishan Mohammed"
-                    className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500 absolute inset-0 z-10"
-                    referrerPolicy="no-referrer"
-                    onError={() => setImageError(true)}
-                  />
-                ) : null}
+                {/* Primary Profile Image from Google Drive with smooth fit */}
+                <img
+                  src="https://lh3.googleusercontent.com/d/1b76XTQU1DYLoOy033p6SiuUE-1uDHLf6"
+                  alt="Ishan Mohammed"
+                  className="w-full h-full object-cover rounded-2xl group-hover:scale-105 transition-transform duration-500 absolute inset-0 z-10"
+                  referrerPolicy="no-referrer"
+                />
 
-                {/* 2. Custom Crafted SVG Fallback mimicking Ishan Mohammed standing on the bridge */}
-                {imageError && (
-                  <div className="absolute inset-0 w-full h-full flex flex-col justify-between p-4 z-10 bg-gradient-to-b from-[#090d1f] via-[#101733] to-[#020617]">
-                    {/* Background grid overlay */}
-                    <div className="absolute inset-0 bg-[linear-gradient(rgba(245,158,11,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(245,158,11,0.015)_1px,transparent_1px)] bg-[size:12px_12px] opacity-70 pointer-events-none" />
-                    
-                    {/* Artistic representation of a suspension bridge scenery with arch and person */}
-                    <svg viewBox="0 0 300 400" className="absolute inset-0 w-full h-full text-slate-400" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      {/* Dusk sky sunset glow */}
-                      <defs>
-                        <radialGradient id="sunset-glow" cx="50%" cy="50%" r="50%">
-                          <stop offset="0%" stopColor="#f59e0b" stopOpacity="0.15" />
-                          <stop offset="100%" stopColor="#020617" stopOpacity="0" />
-                        </radialGradient>
-                      </defs>
-                      <rect x="0" y="0" width="300" height="400" fill="url(#sunset-glow)" />
+                {/* Futurist HUD overlays on top of the image */}
+                <div className="absolute top-3 left-3 z-20 bg-slate-950/95 border border-slate-900 rounded-xl px-2.5 py-1 flex items-center gap-1.5 shadow-md">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse" />
+                  <span className="text-[9px] font-mono text-slate-400 select-none uppercase tracking-wider">Active Profile</span>
+                </div>
 
-                      {/* Bridge background architectural archway arches (Blurred mockup) */}
-                      <path d="M70 320 C70 120 230 120 230 320" stroke="rgba(245,158,11,0.08)" strokeWidth="18" fill="none" strokeDasharray="4 4" />
-                      <path d="M90 320 C90 150 210 150 210 320" stroke="#f59e0b" strokeWidth="2" strokeOpacity="0.12" fill="none" />
-                      <line x1="150" y1="30" x2="150" y2="150" stroke="rgba(245,158,11,0.12)" strokeWidth="2" strokeDasharray="3 3"/>
-
-                      {/* Suspension Cable Pillars (Green steel beam accents) */}
-                      <line x1="40" y1="100" x2="40" y2="350" stroke="#10b981" strokeWidth="3" strokeOpacity="0.2" />
-                      <line x1="260" y1="100" x2="260" y2="350" stroke="#10b981" strokeWidth="3" strokeOpacity="0.2" />
-                      
-                      {/* Cable suspension chains */}
-                      <path d="M40 180 Q150 310 260 180" stroke="#10b981" strokeWidth="1.5" strokeOpacity="0.25" fill="none" />
-                      <path d="M40 210 Q150 330 260 210" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.15" fill="none" />
-
-                      {/* Character Avatar block: Ishan with specs, smile, mustache, "JUST ROAR" brown tee */}
-                      <g transform="translate(150, 230)">
-                        {/* Shoulders / Body wearing dark brown t-shirt */}
-                        <path d="M-65 140 L-50 75 C-45 55, -25 50, 0 50 C25 50, 45 55, 50 75 L65 140 Z" fill="#3b2314" stroke="rgba(245,158,11,0.3)" strokeWidth="1.5" />
-                        
-                        {/* Yellow "JUST ROAR" text mockup on tee */}
-                        <path d="M-30 80 Q0 72 30 80" stroke="#f59e0b" strokeWidth="3" strokeLinecap="round" strokeOpacity="0.8" />
-                        <text x="0" y="93" fill="#fbbf24" fontSize="10" fontWeight="950" fontFamily="sans-serif" textAnchor="middle" letterSpacing="0.5">JUST ROAR</text>
-                        
-                        {/* Neck */}
-                        <rect x="-14" y="20" width="28" height="32" fill="#fbcfe8" fillOpacity="0.2" rx="4" />
-                        <rect x="-14" y="20" width="28" height="32" fill="#f59e0b" fillOpacity="0.1" rx="4" />
-
-                        {/* Head Face */}
-                        <circle cx="0" cy="5" r="26" fill="#fbcfe8" fillOpacity="0.25" stroke="rgba(245,158,11,0.2)" strokeWidth="1" />
-                        <circle cx="0" cy="5" r="26" fill="#f59e0b" fillOpacity="0.12" />
-
-                        {/* Hair and spectacles */}
-                        <path d="M-28 -6 C-20 -28, 20 -28, 28 -6 C29 0, 23 -12, 18 -16 C10 -20, -10 -20, -18 -16 C-23 -12, -29 0, -28 -6" fill="#1e293b" />
-                        <path d="M-28 -4 C-25 -22, 25 -22, 28 -4" stroke="#0f172a" strokeWidth="4" strokeLinecap="round" />
-
-                        {/* Eyeglasses (Clear oval/round silver-framed) */}
-                        <rect x="-16" y="-3" width="12" height="9" rx="4" stroke="#e2e8f0" strokeWidth="2" fill="rgba(255,255,255,0.08)" />
-                        <rect x="4" y="-3" width="12" height="9" rx="4" stroke="#e2e8f0" strokeWidth="2" fill="rgba(255,255,255,0.08)" />
-                        <line x1="-4" y1="1" x2="4" y2="1" stroke="#e2e8f0" strokeWidth="2" />
-                        
-                        {/* Eyes */}
-                        <circle cx="-10" cy="1" r="1.5" fill="#e2e8f0" />
-                        <circle cx="10" cy="1" r="1.5" fill="#e2e8f0" />
-
-                        {/* Neat Mustache */}
-                        <path d="M-9 12 Q0 8 9 12 Q6 10 0 10 Q-6 10 -9 12" fill="#0f172a" />
-
-                        {/* Confident gentle smile */}
-                        <path d="M-7 16 Q0 21 7 16" stroke="#fbbf24" strokeWidth="2" strokeLinecap="round" fill="none" />
-                      </g>
-                    </svg>
-
-                    {/* Fallback Info tags overlay */}
-                    <div className="absolute top-3 left-3 z-25 bg-slate-950/95 border border-slate-900 rounded-xl px-2.5 py-1 flex items-center gap-1.5 shadow-md">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-ping" />
-                      <span className="text-[9px] font-mono text-slate-400 select-none uppercase tracking-wider">Aesthetic Vector Preview</span>
-                    </div>
-
-                    <div className="absolute bottom-3 left-3 right-3 z-25 bg-slate-950/95 border border-slate-900 text-left p-3 rounded-2xl shadow-xl backdrop-blur-sm">
-                      <div className="text-[10px] font-bold text-white tracking-wide">College of Engineering Perumon</div>
-                      <div className="text-[9px] font-mono text-slate-500 mt-0.5 leading-tight">Drop your photo in root, name it <strong className="text-amber-400">profile.jpg</strong> to swap dynamically.</div>
-                    </div>
-                  </div>
-                )}
+                <div className="absolute bottom-3 left-3 right-3 z-20 bg-slate-950/95 border border-slate-900 text-left p-3 rounded-2xl shadow-xl backdrop-blur-sm">
+                  <div className="text-[10px] font-bold text-white tracking-wide">College of Engineering Perumon</div>
+                  <div className="text-[9px] font-mono text-slate-500 mt-0.5 leading-tight">Ishan Mohammed — CSE Student Specialist</div>
+                </div>
               </div>
             </div>
 
